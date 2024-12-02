@@ -7,6 +7,8 @@ public class MyString {
         System.out.println("lowercase : " + lowerCase("lowercase"));
 
         System.out.println("Testing contains:");
+        System.out.println(contains("shotgun", "")); // false
+        System.out.println(contains("", "")); // false
         System.out.println(contains("shotgun", "flower")); // false
         System.out.println(contains("hhhhsh", "happy")); // false
         System.out.println(contains("unhappy", "unhappy")); // true
@@ -50,6 +52,9 @@ public class MyString {
     public static boolean contains(String str1, String str2) {
 
         // initiazling an array big enough to contain the indexes of all appearances of string 1 first letter in string 2.
+        if (str2.length() == 0) {
+            return (str1.length() == str2.length() ? true : false);
+        }
         char firstLetterOfStr2 = str2.charAt(0);
         int[] indexArr = new int[countLetters(str1, firstLetterOfStr2)];
 
