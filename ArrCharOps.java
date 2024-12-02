@@ -5,6 +5,7 @@ public class ArrCharOps {
         String str = "clearly";
         char[] arr1 = {'c','l','e','a','r','l','y'};
         char[] arr2 = {'U','n','d','e','r','s','t', 'o', 'o', 'd'};
+        // char[] arr3 = new char[0];
 
         System.out.println(equals(arr1, arr1));
 
@@ -23,8 +24,10 @@ public class ArrCharOps {
         System.out.println(compareTo("apple", "banana"));
         System.out.println(compareTo("apple", "applepie"));
         System.out.println(compareTo("Zoo", "zoo"));
+        System.out.println(compareTo("", ""));
         System.out.println(hashCode(arr1));
         System.out.println(hashCode(arr2));
+        // System.out.println(hashCode(arr3));
     }
 
     /** Prints the given array of characters, and moves the cursor to the next line.
@@ -128,12 +131,17 @@ public class ArrCharOps {
     public static long hashCode(char[] arr) {
         // Replace the following statement with your code
         long hashCodeGenerated = 0;
+        double powerOf7 = 0;
+
         if (arr.length == 0) {
-            return 0;
+            return hashCodeGenerated;
         }
+
         for (int i = 0; i < arr.length; i++) {
-            hashCodeGenerated += arr[i] * (7 ^ (arr.length - 1 - i)); 
+            powerOf7 = Math.pow(7,(arr.length - 1 - i));
+            hashCodeGenerated += arr[i] * powerOf7;
         }
+
         return hashCodeGenerated;
     }
 
@@ -164,6 +172,11 @@ public class ArrCharOps {
      */
     public static int compareTo(String str1, String str2) {
         int resultOfComparison = -2;
+       
+        if ((str1.length() == 0) || (str2.length() == 0)) { 
+            return resultOfComparison;
+        }
+       
         int shorterStringLength = (str1.length() >= str2.length() ? str2.length() : str1.length());
         for (int i = 0; i < shorterStringLength; i++) {
             if (str1.charAt(i) != str2.charAt(i)) {
@@ -171,11 +184,13 @@ public class ArrCharOps {
                 return resultOfComparison;
             }
         }
+      
         if (str1.length() == str2.length()) {
             return resultOfComparison = 0;
         } else {
             resultOfComparison = (str1.length() < str2.length() ? -1 : 1);    // comparing the different character
         }
+     
         return resultOfComparison;
     }
 }
